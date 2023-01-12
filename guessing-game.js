@@ -95,12 +95,6 @@ console.log(`... good luck >:)`)
 
 
 
-
-
-
-
-
-
 const askGuess = () => {
   
 rl.question("Enter a guess", answer => {
@@ -108,27 +102,20 @@ rl.question("Enter a guess", answer => {
     
     if (numAttempts === 1) {
         console.log('You lose!');
-        // rl.close();
+        rl.close();
     }
      if (checkGuess(Number(answer))) {
         console.log('You win!')
-        // rl.close();
+        rl.close();
     } else {
         askGuess();
         --numAttempts;
     }
 
-    endOfGame();
+    // askGuess();
 });
 }
 
-const endOfGame = () => {
-
-    rl.question(`Exit application: `, done => {
-        console.log("Let's play again sometime!")
-           rl.close()    
-    })
-}
 
 playAGame();
 
