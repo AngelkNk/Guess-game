@@ -9,6 +9,7 @@ const randomNum = (min, max) => {
     return Math.round(Math.random() * (max - min))
 }
 
+
 const playAGame = () => {
     console.log("Hello...")
     rl.question(`Let's Play a Game: `, greeting => {
@@ -17,6 +18,8 @@ const playAGame = () => {
         askLimit();
     })
 }
+
+
 
 const askLimit = () => {
     function games(){
@@ -38,6 +41,8 @@ const askLimit = () => {
     })
 
 }
+
+
 const askRange = () => {60
 
     rl.question(`Enter a max number: `, min => {
@@ -45,10 +50,12 @@ const askRange = () => {60
         rl.question(`Enter a min number: `, max => {
             console.log(`I'm thinking of a number between ${min} and ${max} ...`);
             secretNumber = randomNum(min, max);
-            askGuess();
+            iLied();
         })
     })
 }
+
+
 
 const checkGuess = (n) => {
     if (n > secretNumber) {
@@ -64,21 +71,63 @@ const checkGuess = (n) => {
     }
 }
 
-const askGuess = () => {
 
+
+
+const iLied = () => {
+    
+    function lie(){
+    console.log(`I may have lied...`)
+}
+function luck(){
+console.log(`... good luck >:)`)
+}
+    rl.question(`Taunting: `, lying => {
+        setTimeout(lie, 2000)
+        setTimeout(luck, 4000);
+        console.log(`Guess it if you can...`)
+         askGuess(); 
+    })
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+const askGuess = () => {
+  
 rl.question("Enter a guess", answer => {
+   
+    
     if (numAttempts === 1) {
         console.log('You lose!');
-        rl.close();
+        // rl.close();
     }
      if (checkGuess(Number(answer))) {
         console.log('You win!')
-        rl.close();
+        // rl.close();
     } else {
         askGuess();
         --numAttempts;
     }
+
+    endOfGame();
 });
+}
+
+const endOfGame = () => {
+
+    rl.question(`Exit application: `, done => {
+        console.log("Let's play again sometime!")
+           rl.close()    
+    })
 }
 
 playAGame();
