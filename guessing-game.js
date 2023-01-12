@@ -44,16 +44,20 @@ const askLimit = () => {
 
 
 const askRange = () => {60
-
+ function delay(){
+    console.log(`Guess it if you can...`)
+ }
     rl.question(`Enter a max number: `, min => {
        
         rl.question(`Enter a min number: `, max => {
             console.log(`I'm thinking of a number between ${min} and ${max} ...`);
             secretNumber = randomNum(min, max);
+            setTimeout(delay, 2000)
             iLied();
         })
     })
 }
+
 
 
 
@@ -85,7 +89,7 @@ console.log(`... good luck >:)`)
     rl.question(`Taunting: `, lying => {
         setTimeout(lie, 2000)
         setTimeout(luck, 4000);
-        console.log(`Guess it if you can...`)
+        
          askGuess(); 
     })
   
