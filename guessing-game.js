@@ -37,7 +37,7 @@ const askLimit = () => {
         
         
         numAttempts = attempts;
-    
+        console.log(`Your Attempts are now: ${attempts}`)
         askRange();  
     })
 
@@ -46,9 +46,9 @@ const askLimit = () => {
 
 const askRange = () => {60
 
-    rl.question(`Enter a max number: `, min => {
+    rl.question(`Enter a min number: `, min => {
        
-        rl.question(`Enter a min number: `, max => {
+        rl.question(`Enter a max number: `, max => {
             console.log(`I'm thinking of a number between ${min} and ${max} ...`);
             secretNumber = randomNum(min, max);
             iLied();
@@ -131,15 +131,16 @@ rl.question("Enter a guess: ", answer => {
 
 const playAgain = (string) => {
     
-     rl.question(`Press any key to exit `, goodbye => {
+     rl.question(`Press any key to exit: `, goodbye => {
         
-                console.log('See ya!')
+                console.log('See ya next time!')
               rl.close()
             
         })
       
     }
   
+   
 
 playAGame();
 
