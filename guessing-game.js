@@ -1,9 +1,9 @@
 const readline = require("readline");
 
-const rl = readline.createInterface({input: process.stdin, ouput: process.stdout});
+const rl = readline.createInterface({input: process.stdin, output: process.stdout});
 
 let secretNumber;
-let numAttempts = 5;
+let numAttempts;
 
 const randomNum = (min, max) => {
     return Math.round(Math.random() * (max - min))
@@ -11,32 +11,33 @@ const randomNum = (min, max) => {
 
 
 const playAGame = () => {
-    console.log("Hello...")
-    rl.question(`Let's Play a Game: `, greeting => {
-        console.log(` Would you like to play a game?`);
+    
+      function games(){
+        console.log('Let me rephrase... you will play a game...');
+    }
+    rl.question(`Would you like to play a game? `, greeting => {
         
-        askLimit();
+      
+        setTimeout(games, 2000);
+        
+        setTimeout(askLimit, 3000);
     })
 }
 
 
 
 const askLimit = () => {
-    function games(){
-        console.log('Let me rephrase... you will play a game...');
-    }
-    function attempt(){
-        console.log(` Your attempts: ${numAttempts}`)
-    }
-    function minMax(){
-        console.log('Please enter a min and max number')
-    }
     
-    rl.question(`Enter number of attempts: `, attempts => {
-        setTimeout(games, 2000)
-        setTimeout(attempt, 3000);
-        numAttempts = 5;
-        setTimeout(minMax, 5000)
+    // function attempt(){
+    //     console.log(`Your attempts: ${numAttempts}`)
+    // }
+   
+    // setTimeout(attempt, 3000)
+    rl.question(`Enter Your Attempts: `, attempts => {
+        
+        
+        numAttempts = attempts;
+    
         askRange();  
     })
 
@@ -44,15 +45,12 @@ const askLimit = () => {
 
 
 const askRange = () => {60
- function delay(){
-    console.log(`Guess it if you can...`)
- }
+
     rl.question(`Enter a max number: `, min => {
        
         rl.question(`Enter a min number: `, max => {
             console.log(`I'm thinking of a number between ${min} and ${max} ...`);
             secretNumber = randomNum(min, max);
-            setTimeout(delay, 1000)
             iLied();
         })
     })
@@ -80,17 +78,17 @@ const checkGuess = (n) => {
 
 const iLied = () => {
     
-    function lie(){
-    console.log(`I may have lied...`)
-}
+
 function luck(){
 console.log(`... good luck >:)`)
 }
-    rl.question(`Taunting: `, lying => {
-        setTimeout(lie, 1000)
+
+    rl.question(`Come on, take a guess: `, lying => {
+        
+        console.log(`I may have lied...`)
         setTimeout(luck, 3000);
         
-         askGuess(); 
+         setTimeout(askGuess, 4000); 
     })
   
 }
@@ -101,47 +99,46 @@ console.log(`... good luck >:)`)
 
 const askGuess = () => {
   
-rl.question("Enter a guess", answer => {
+rl.question("Enter a guess: ", answer => {
    
     
     if (numAttempts === 1) {
-
-        playAgain();
-    }
-     if (checkGuess(Number(answer))) {
-         
-        return playAgain();
+        console.log('You Lose... :(')
+        // playAgain()
+       
+        // rl.close()
+    } else if (checkGuess(Number(answer))) {
+        console.log('You Win!')
+        playAgain()
+       
+        // rl.close()
     } else {
         askGuess();
         --numAttempts;
-        
+        // playAgain()
 
         if(numAttempts === 0){
-            console.log("Better Luck next time!")
-            console.log('Press any key to exit')
-           setTimeout(playAgain, 0)
+            
+            console.log('Better luck next time!')
+           playAgain()
         }
-
         
-    }
-    playAgain();
-    
-       
-       
-    
+        
+    }     
+    playAgain()
 });
 } 
 
 const playAgain = () => {
-   
-  rl.question("See you", answer => {
-        console.log("See you next time!")
-        
-        rl.close()
-    });
     
-     
-    } 
+     rl.question(`Please play Again `, goodbye => {
+            
+                console.log('see ya!')
+              rl.close()
+            
+        })
+      
+    }
   
 
 playAGame();
