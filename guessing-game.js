@@ -34,7 +34,7 @@ const askLimit = () => {
     
     rl.question(`Enter number of attempts: `, attempts => {
         setTimeout(games, 2000)
-        setTimeout(attempt, 4000);
+        setTimeout(attempt, 3000);
         numAttempts = 5;
         setTimeout(minMax, 5000)
         askRange();  
@@ -52,7 +52,7 @@ const askRange = () => {60
         rl.question(`Enter a min number: `, max => {
             console.log(`I'm thinking of a number between ${min} and ${max} ...`);
             secretNumber = randomNum(min, max);
-            setTimeout(delay, 2000)
+            setTimeout(delay, 1000)
             iLied();
         })
     })
@@ -63,11 +63,11 @@ const askRange = () => {60
 
 const checkGuess = (n) => {
     if (n > secretNumber) {
-        console.log(`Too high.`);
+        console.log(`Oh no, you're too high.`);
         return false;
     }
     if (n < secretNumber) {
-        console.log(`Too Low.`);
+        console.log(`Oh no, you're too Low.`);
         return false;
     } else {
         console.log(`Correct!`);
@@ -87,8 +87,8 @@ function luck(){
 console.log(`... good luck >:)`)
 }
     rl.question(`Taunting: `, lying => {
-        setTimeout(lie, 2000)
-        setTimeout(luck, 4000);
+        setTimeout(lie, 1000)
+        setTimeout(luck, 3000);
         
          askGuess(); 
     })
@@ -105,21 +105,45 @@ rl.question("Enter a guess", answer => {
    
     
     if (numAttempts === 1) {
-        console.log('You lose!');
-        rl.close();
+
+        playAgain();
     }
      if (checkGuess(Number(answer))) {
-        console.log('You win!')
-        rl.close();
+         
+         playAgain();
     } else {
         askGuess();
         --numAttempts;
+        
+
+        if(numAttempts === 0){
+            console.log("Better Luck next time!")
+            console.log('Press any key to exit')
+           setTimeout(playAgain, 0)
+        }
+
+        
     }
-
-    // askGuess();
+    playAgain();
+    
+       
+       
+    
 });
-}
+} 
 
+const playAgain = () => {
+   
+  rl.question("See you", answer => {
+        console.log("See you next time!")
+        
+        rl.close()
+    });
+    
+     
+    } 
+  
 
 playAGame();
+
 
