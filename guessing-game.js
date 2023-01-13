@@ -117,11 +117,11 @@ rl.question("Enter a guess: ", answer => {
         --numAttempts;
         // playAgain()
 
-        if(numAttempts === 0){
+        // if(numAttempts === 0){
             
-            console.log('Better luck next time!')
-           playAgain()
-        }
+        //     console.log('Better luck next time!')
+        //    playAgain()
+        // }
         
         
     }     
@@ -129,11 +129,11 @@ rl.question("Enter a guess: ", answer => {
 });
 } 
 
-const playAgain = () => {
+const playAgain = (string) => {
     
-     rl.question(`Please play Again `, goodbye => {
-            
-                console.log('see ya!')
+     rl.question(`Press any key to exit `, goodbye => {
+        
+                console.log('See ya!')
               rl.close()
             
         })
