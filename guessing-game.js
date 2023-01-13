@@ -110,7 +110,7 @@ rl.question("Enter a guess", answer => {
     }
      if (checkGuess(Number(answer))) {
          
-         playAgain();
+        return playAgain();
     } else {
         askGuess();
         --numAttempts;
